@@ -1,0 +1,6 @@
+PUESDO CODE
+
+
+COMPONENT TREE
+
+Context API - designed to share data that is considered "global" of a tree
