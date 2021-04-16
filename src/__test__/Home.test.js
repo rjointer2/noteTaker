@@ -1,8 +1,7 @@
 
-import {render} from '@testing-library/react';
-import { renderHook, act } from 'react';
-import Home from '../src/appComponents/Home'
-import fetcchMock from 'jest-fetch-mock';
+import { renderHook, act } from '@testing-library/react-hooks';
+import Home from '../appComponents/Home'
+import fetchMock from 'jest-fetch-mock';
 
 fetchMock.enableMocks();
 
@@ -19,7 +18,6 @@ fetchMock.enableMocks();
     setStatus => get the status of the the request
     returns a boolean true or false 
     state is true initially
-
 */
 
 
@@ -27,7 +25,7 @@ test('test if deletes object from array', () => {
     const { result } = renderHook(() => Home());
 
     act(() => {
-        result.current.deleteNote(expect.any(Number))
+        result.current.deleteNote(3)
     })
 
     expect(result.current.notes.length).toBe(2)

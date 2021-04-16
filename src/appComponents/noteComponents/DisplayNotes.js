@@ -19,4 +19,4 @@ function DisplayNotes(props) {
     )
 }
 
-export default {DisplayNotes, deleteNote};
+export default {DisplayNotes};
