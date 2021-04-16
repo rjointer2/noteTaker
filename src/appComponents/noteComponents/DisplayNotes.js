@@ -1,14 +1,12 @@
 
-function DisplayNotes(props) {
-
-    const notes = props.notes;
-
+const DisplayNotes = ({notes, title, deleteNote}) => {
 
     return (
         <div>
+            <h2>{ title }</h2>
             {notes.map((note) => (
                 <div>
-                    <h2>{note.title}</h2>
+                    <h3>{note.title}</h3>
                     <p>Here is your note!</p>
                     <button onClick={() => deleteNote(note.id)}>
                         Delete Note
@@ -19,4 +17,4 @@ function DisplayNotes(props) {
     )
 }
 
-export default {DisplayNotes};
+export default DisplayNotes;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DisplayNotes from './noteComponents/DisplayNotes'
 
-function Home() {
+const Home = () => {
     const [notes, setNotes] = useState([
         {"title": "notes", "body": "note...", "id": 1},
         {"title": "notes", "body": "note...", "id": 2},
@@ -16,17 +16,18 @@ function Home() {
     }
 
 
-    return {
-        deleteNote,
-        notes
-    }
-
-    /* return (
+    return (
         <div className="Home">
-            <DisplayNotes notes={notes} title="All Notes"/>
+            <DisplayNotes notes={notes} title="All Notes" deleteNote={deleteNote}/>
 
         </div>
-    )  */
+    ) 
+
+    // For testing
+    /* return {
+        deleteNote,
+        notes
+    } */
 
 }
 
