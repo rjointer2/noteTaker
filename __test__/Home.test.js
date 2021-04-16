@@ -23,16 +23,14 @@ fetchMock.enableMocks();
 */
 
 
-describe('test our hook deletes note object', () => {
-
+test('test if deletes object from array', () => {
     const { result } = renderHook(() => Home());
 
     act(() => {
-        result.current.deleteNote()
+        result.current.deleteNote(expect.any(Number))
     })
 
     expect(result.current.notes.length).toBe(2)
-
 })
 
 
