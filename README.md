@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### JSON SERVER
 
-json-server --watch db.json ** In second terminal
+npx json-server --watch fakeDB/db.json --port 8000 ** In second terminal
 
 ## License & Copyright
 

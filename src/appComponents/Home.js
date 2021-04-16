@@ -19,7 +19,6 @@ const Home = () => {
     return (
         <div className="Home">
             <DisplayNotes notes={notes} title="All Notes" deleteNote={deleteNote}/>
-
         </div>
     ) 
 
@@ -29,6 +28,13 @@ const Home = () => {
         notes
     } */
 
+
 }
+
+// https://api.chucknorris.io/jokes/random
+
+const url = fetch('https://api.chucknorris.io/jokes/random').then(res => res.json())
+
+console.log(Array.isArray(url.then(data => console.log(data))));
 
 export default Home;

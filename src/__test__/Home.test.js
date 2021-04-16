@@ -2,8 +2,20 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import Home from '../appComponents/Home'
 import fetchMock from 'jest-fetch-mock';
+import { render } from 'react-dom';
 
-fetchMock.enableMocks();
+global.fetch = jest.fn(() => Promise({
+    json: () => Promise.resolve({
+        allNotes: expect.any(Array)
+    })
+}));
+
+describe('test', () => {
+    it('loads', () => {
+        act(() => render(<Home/>))
+        expect(screen.getByText('Note')).toMatchObject()
+    })
+})
 
 
 /* 
@@ -18,6 +30,12 @@ fetchMock.enableMocks();
     setStatus => get the status of the the request
     returns a boolean true or false 
     state is true initially
+
+    --- Testing useEffect Hook
+
+    clean-up function runs before the component is removed from the UI to prevent memory leaks. 
+
+
 */
 
 
