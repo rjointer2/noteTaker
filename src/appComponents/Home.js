@@ -9,7 +9,10 @@ const Home = () => {
     ]);
 
     const deleteNote = (id) => {
-
+        // returns a new state of Notes with id instances removed
+        const newNotes = notes.filter(note => note.id !== id)
+        // sets the state as a new filter Array 
+        setNotes(newNotes)
     }
 
 
