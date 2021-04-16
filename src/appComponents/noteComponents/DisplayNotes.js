@@ -3,7 +3,6 @@ function DisplayNotes(props) {
 
     const notes = props.notes;
 
-    console.log(props, notes)
 
     return (
         <div>
@@ -11,10 +10,13 @@ function DisplayNotes(props) {
                 <div>
                     <h2>{note.title}</h2>
                     <p>Here is your note!</p>
+                    <button onClick={() => deleteNote(note.id)}>
+                        Delete Note
+                    </button>
                 </div>
             ))}
         </div>
     )
 }
 
-export default DisplayNotes;
+export default {DisplayNotes, deleteNote};

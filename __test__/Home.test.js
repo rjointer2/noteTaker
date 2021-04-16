@@ -1,8 +1,7 @@
-// hook
-import Home from '../src/appComponents/Home'
+
 import {render} from '@testing-library/react';
 import { renderHook, act } from 'react';
-
+import Home from '../src/appComponents/Home'
 import fetcchMock from 'jest-fetch-mock';
 
 fetchMock.enableMocks();
@@ -23,15 +22,47 @@ fetchMock.enableMocks();
 
 */
 
+
+describe('test our hook deletes note object', () => {
+
+    const { result } = renderHook(() => Home());
+
+    act(() => {
+        result.current.deleteNote()
+    })
+
+    expect(result.current.notes.length).toBe(2)
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 describe("test our hook's functionally", () => {
 
     const { result } = renderHook(() => /* our hook */ DisplayNotes());
 
     act(() => {
         result.current.setNote() /* property of our component */
+        result.current
     })
 
-    // just for this case the length of the array should be at least
+    
+
+    /* // just for this case the length of the array should be at least
     // expecting our state to return a length of 1
 
     test('state to be null or a Array', () => {
@@ -42,7 +73,9 @@ describe("test our hook's functionally", () => {
         expect(properties.hasOwnProperty('title')).toBe(true)
         expect(properties.hasOwnProperty('body')).toBe(true)
         expect(properties.hasOwnProperty('id')).toBe(true)
-    })
+    });
+
+    test('test if')
     
     // mocking fecth
 
@@ -57,7 +90,7 @@ describe("test our hook's functionally", () => {
             ))
         })
     })
-
+ */
 
 })
 
