@@ -1,9 +1,32 @@
 
 import { renderHook, act } from '@testing-library/react-hooks';
 import Home from '../appComponents/Home'
-import fetchMock from 'jest-fetch-mock';
-import { render } from 'react-dom';
-import { Done } from '@material-ui/icons';
+
+
+describe('test the fetch request coming in', () => {
+
+    const mockURL = ()
+
+    it('should get take a function and get the object', (/* args */) => {
+        // function fetches the url
+        const response = await fetchFun(/* url  */);
+
+        // what should is expected? and should equal
+        // we know we want a object ( a promise )
+        expect(response).toBe(Promise.resolve(objectContaining(Array)));
+        expect(response).toHaveBeenCalledTimes(1);
+        expect(response).toHaveBeenLastCalledWith(mockURL)
+
+    })
+
+})
+
+
+
+
+
+
+
 
 
 describe('Home Component', () => {
@@ -35,6 +58,8 @@ describe('Home Component', () => {
         cb()
 
     });
+
+    const mockURL = 'http://localhost:8000/notes'
 
     it('should return object with correct properties', () => {
 
