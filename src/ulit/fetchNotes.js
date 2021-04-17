@@ -10,4 +10,4 @@ const fetchNotes = async () => {
 
 }
 
-export {fetchNotes}
+export default fetchNotes

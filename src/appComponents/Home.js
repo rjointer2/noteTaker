@@ -35,8 +35,9 @@ const Home = () => {
 
     // For testing
     return {
-        deleteNote,
-        notes
+        setNotes,
+        notes,
+        fetchNotes
     } 
 
 }
