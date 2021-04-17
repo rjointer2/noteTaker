@@ -1,12 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DisplayNotes from './noteComponents/DisplayNotes'
+import fetchNotes from './../ulit/fetchNotes';
 
 const Home = () => {
-    const [notes, setNotes] = useState([
-        {"title": "notes", "body": "note...", "id": 1},
-        {"title": "notes", "body": "note...", "id": 2},
-        {"title": "notes", "body": "note...", "id": 3}
-    ]);
+    // the state is null initially, but will have out note objects or not
+    const [notes, setNotes] = useState(null);
 
     const deleteNote = (id) => {
         // returns a new state of Notes with id instances removed
@@ -15,26 +13,32 @@ const Home = () => {
         setNotes(newNotes)
     }
 
+    // Our clean up function
 
-    return (
+    useEffect(() => {
+
+        fetchNotes('http://localhost:8000/notes').then( data => {
+            // set our notes
+            setNotes(data)
+        })
+
+    },[
+        /* Our Dependencies */
+    ])
+
+
+    /* return (
         <div className="Home">
-            <DisplayNotes notes={notes} title="All Notes" deleteNote={deleteNote}/>
+            { notes && <DisplayNotes notes={notes} title="All Notes" deleteNote={deleteNote}/>}
         </div>
-    ) 
+    ) */ 
 
     // For testing
-    /* return {
+    return {
         deleteNote,
         notes
-    } */
-
+    } 
 
 }
-
-// https://api.chucknorris.io/jokes/random
-
-const url = fetch('  http://localhost:8000/notes').then(res => res.json())
-
-console.log(url.then(data => console.log(data)));
 
 export default Home;

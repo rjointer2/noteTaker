@@ -12,8 +12,6 @@ import {
 
 import { Assignment } from '@material-ui/icons'
 
-import RecentFiles from './appComponents/RecentNotes';
-import Navbar from './appComponents/Navbar';
 import Home from './appComponents/Home';
 
 import './App.css';
