@@ -33,8 +33,8 @@ const Home = () => {
 
 // https://api.chucknorris.io/jokes/random
 
-const url = fetch('https://api.chucknorris.io/jokes/random').then(res => res.json())
+const url = fetch('  http://localhost:8000/notes').then(res => res.json())
 
-console.log(Array.isArray(url.then(data => console.log(data))));
+console.log(url.then(data => console.log(data)));
 
 export default Home;
