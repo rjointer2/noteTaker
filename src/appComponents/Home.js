@@ -27,18 +27,18 @@ const Home = () => {
     ])
 
 
-    /* return (
+    return (
         <div className="Home">
             { notes && <DisplayNotes notes={notes} title="All Notes" deleteNote={deleteNote}/>}
         </div>
-    ) */ 
-
+    ) 
+    
     // For testing
-    return {
+    /* return {
         setNotes,
         notes,
         fetchNotes
-    } 
+    }  */
 
 }
 
