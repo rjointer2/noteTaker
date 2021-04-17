@@ -51,6 +51,8 @@ describe('Home Component', () => {
     })
 })
 
+// what to passed / export?
+
 
 /* 
     setNote function => gets notes from DB
