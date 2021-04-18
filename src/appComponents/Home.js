@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+
 import DisplayNotes from './noteComponents/DisplayNotes'
 import useRequest from '../customHooks/useRequest';
 
 const Home = () => {
 
     // import our custom hook from useRequest
-    const { notes, pending, error, setNotes, setPending, setError } = useRequest('http://localhost:8000/notes');
+    const { notes, pending, error, setNotes } = useRequest('http://localhost:8000/notes');
 
     // deletes a blog *** THIS IS TEMPORARY USAGE, THIS WILL BE A COMPONENT SOON
     const deleteNote = (id) => {

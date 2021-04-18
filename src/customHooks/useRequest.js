@@ -1,4 +1,4 @@
-import { useScrollTrigger } from '@material-ui/core';
+
 import { useState, useEffect} from 'react';
 
 const useRequest = (url) => {

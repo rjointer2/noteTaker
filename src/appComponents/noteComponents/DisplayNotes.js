@@ -1,5 +1,6 @@
 
 const DisplayNotes = ({notes, title, deleteNote}) => {
+    
 
     return (
         <div>
