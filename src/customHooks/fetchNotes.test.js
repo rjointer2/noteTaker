@@ -3,7 +3,7 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import Home from '../appComponents/Home';
 
 import fetch from 'jest-fetch-mock';
-import fetchNotes from './fetchNotes'
+import fetchNotes from './useRequest'
 import { useState } from 'react';
 
 fetch.enableMocks();
