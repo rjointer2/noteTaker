@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@editorjs/editorjs": "^2.20.2",
     "jest-fetch-mock": "^3.0.3"
   }
 }
