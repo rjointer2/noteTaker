@@ -25,7 +25,7 @@ import './App.css';
 import Home from './appComponents/Home';
 import CreateNote from './appComponents/CreateNote';
 import Navbar from './appComponents/navigation/Navbar';
-import NoteDetails from './appComponents/NoteDetails';
+import NoteDetails from './appComponents/noteComponents/NoteDetails';
 
 
 function App() {

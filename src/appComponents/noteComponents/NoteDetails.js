@@ -1,14 +1,11 @@
 import { useParams } from "react-router";
-import useRequest from "../customHooks/useRequest";
+import useRequest from "../../customHooks/useRequest";
 
 const NoteDetails = () => {
 
     // Route Params
     const { id } = useParams()
     const { notes, pending, error } = useRequest('http://localhost:8000/notes/' + id);
-
-    
-    
 
     return (
         <div className="noteDetails">

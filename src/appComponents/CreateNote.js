@@ -1,19 +1,22 @@
 
+import { useState } from 'react'
+
+
 // Editor Block
 import editor from '../ulit/editor'
 
 const CreateNote = () => {
 
+    // state of the title
+    const [ title, setTitle ] = useState('')
+
     // editorjs with React will not load on first mount
     // if the promise from editorjs is rejected, then 
     // reload the component again to get the editor module
 
-    editor.isReady.then(res => {
-        if(res === undefined) {
-            console.log('reload')
-        }
-    }).catch(error => {
+    editor.isReady.catch(error => {
         window.location.reload()
+        console.log('test')
     })
 
     const saveNote = () => {
@@ -29,12 +32,14 @@ const CreateNote = () => {
             <h2>
                 Make New Note!
             </h2>
-            <form>
+            <form action="">
                 <label>
-                    Note Tile
+                    Note Title
                 </label>
                 <input 
                     type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     required
                 />
             </form>
