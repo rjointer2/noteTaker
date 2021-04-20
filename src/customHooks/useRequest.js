@@ -19,7 +19,10 @@ const useRequest = (url) => {
     }
 
     useEffect(() => {
-        fetchNotes(url).then( data => {
+
+        const abortController = new AbortController();
+
+        fetchNotes(url, { signal: abortController.singal }).then( data => {
             // set our note's state as the resolve promise 
             setNotes(data);
             // This res isn't pending 
@@ -27,8 +30,24 @@ const useRequest = (url) => {
             // keep our error state at null 
             setError(null)
         }).catch(error => {
-            setError(error.message)
+            if( error.name === 'AbortError') {
+                console.log('fetch aborted')
+            } else {
+                setPending(false)
+                setError(error.message)
+            }
         })
+
+        return () => {
+            console.log(
+                'clean up has occur to help perform React State updates on unmounted component'
+            )
+            abortController.abort();
+            console.log(
+                'fetch interupted, state update if error'
+            )
+        }
+
     },[
         /* Our Dependencies */
         url

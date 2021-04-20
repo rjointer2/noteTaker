@@ -1,9 +1,9 @@
-import EditorJs from '@editorjs/editorjs';
+import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
 
-const editor = new EditorJs({
+const editor = new EditorJS({
 
     // Where the content is outputted
 
@@ -37,6 +37,8 @@ const editor = new EditorJs({
     }
 
 });
+
+
 
 
 export default editor

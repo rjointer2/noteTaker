@@ -2,23 +2,11 @@
 // Dumb Componnents
 import DisplayNotes from './noteComponents/DisplayNotes'
 import useRequest from '../customHooks/useRequest';
-import MakeNote from './noteComponents/MakeNote';
-
-// Editor Block
-import editor from '../ulit/editor'
-
 
 // Home Component 
 
 const Home = () => {
     
-    const saveNote = () => {
-    editor.save().then((outputData) => {
-    console.log('Article data: ', outputData)
-    }).catch((error) => {
-    console.log('Saving failed: ', error)
-    });
-}
 
     // import our custom hook from useRequest
     const { notes, pending, error, setNotes } = useRequest('http://localhost:8000/notes');
@@ -36,7 +24,6 @@ const Home = () => {
             {/* below make a loading comp */}
             { pending && <div>Loading...</div> }
             { notes && <DisplayNotes notes={notes} title="All Notes" deleteNote={deleteNote}/>}
-            <MakeNote saveNote={saveNote} editor={editor} />
         </div>
     ) 
     

@@ -1,4 +1,6 @@
 
+import { Link } from 'react-router-dom'
+
 const DisplayNotes = ({notes, title, deleteNote}) => {
     
 
@@ -6,8 +8,10 @@ const DisplayNotes = ({notes, title, deleteNote}) => {
         <div>
             <h2>{ title }</h2>
             {notes.map((note) => (
-                <div>
-                    <h3>{note.title}</h3>
+                <div key={note.id}>
+                    <Link to={`/notes/${note.id}`}>
+                        <h3>{note.title}</h3>
+                    </Link>
                     <p>Here is your note!</p>
                     <button onClick={() => deleteNote(note.id)}>
                         Delete Note
