@@ -24,7 +24,9 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 # Usage
 
-This can be used to create notes for each day of the week
+This web application can be used to take notes. For best experience please the instruction below
+
+# Instructions
 
 ### `npm start`
 
