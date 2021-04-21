@@ -1,7 +1,6 @@
 
 import { useState } from 'react'
 
-
 // Editor Block
 import editor from '../ulit/editor'
 
@@ -9,6 +8,28 @@ const CreateNote = () => {
 
     // state of the title
     const [ title, setTitle ] = useState('')
+    
+    const PostRequest = async (url, object) => {
+
+        const settings = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            },
+            mode: 'no-cors',
+            body: JSON.stringify(object)
+        };
+    
+        try {
+            const res = await fetch(url, settings);
+            const data = await res.json();
+            return data
+        } catch (error) {
+            return error
+        }
+    
+    }
 
     // editorjs with React will not load on first mount
     // if the promise from editorjs is rejected, then 
@@ -22,32 +43,31 @@ const CreateNote = () => {
     const saveNote = () => {
         editor.save().then((outputData) => {
         console.log('Article data: ', outputData)
+        console.log(outputData.blocks)
+        PostRequest('http://localhost:3001/notes', outputData.blocks)
         }).catch((error) => {
         console.log('Saving failed: ', error)
         });
     }
 
     return (
-        <div className="createNote">
-            <h2>
-                Make New Note!
-            </h2>
-            <form action="">
-                <label>
-                    Note Title
-                </label>
-                <input 
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                />
-            </form>
+        <div>
             <label>
-                Note Body:
+                Note Title
+            </label>
+            <input 
+                type="text"
+                name="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            <label>
+                Body
             </label>
             <div id="editorjs"></div>
-            <button className="btn" onClick={() => saveNote()}>
+            <button type="submit" className="btn" onClick={() => {
+                saveNote()
+            }}>
                 Save Note!
             </button>
         </div>

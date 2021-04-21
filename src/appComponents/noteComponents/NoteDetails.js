@@ -5,7 +5,7 @@ const NoteDetails = () => {
 
     // Route Params
     const { id } = useParams()
-    const { notes, pending, error } = useRequest('http://localhost:8000/notes/' + id);
+    const { notes, pending, error } = useRequest('http://localhost:5000/notes/' + id);
 
     return (
         <div className="noteDetails">

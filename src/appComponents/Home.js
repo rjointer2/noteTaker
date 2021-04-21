@@ -9,7 +9,7 @@ const Home = () => {
     
 
     // import our custom hook from useRequest
-    const { notes, pending, error, setNotes } = useRequest('http://localhost:8000/notes');
+    const { notes, pending, error, setNotes } = useRequest('http://localhost:3001/api/notes');
 
     const deleteNote = (id) => {
         // returns a new state of Notes with id instances removed

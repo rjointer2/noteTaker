@@ -33,7 +33,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### JSON SERVER
 
-npx json-server --watch fakeDB/db.json --port 8000 ** In second terminal
+node .\backend\server ** In second terminal
+API - http://localhost:3001/api/notes
+
 
 ## License & Copyright
 
