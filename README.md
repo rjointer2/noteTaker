@@ -1,3 +1,4 @@
+
 # Description
 
 This is a note taking app using react and express
@@ -24,6 +25,7 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 # Usage
 
+<<<<<<< HEAD
 This web application can be used to take notes. For best experience please the instruction below
 
 # Instructions
@@ -32,10 +34,14 @@ This web application can be used to take notes. For best experience please the i
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+=======
+--> FOR FIRST DOWNLOAD <--
+    npm i 
+>>>>>>> 73c807882d749442e52759bcfcc17a6855840875
 
-### JSON SERVER
-
-npx json-server --watch fakeDB/db.json --port 8000 ** In second terminal
+This can be used to create notes, enjoy the application!
+ 
+-- npm run dev
 
 ## License & Copyright
 
@@ -43,4 +49,4 @@ npx json-server --watch fakeDB/db.json --port 8000 ** In second terminal
 
 Licensed under the [MIT License](LICENSE)
 
-
+ @editorjs/editorjs @editorjs/list @editorjs/header
