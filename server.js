@@ -1,28 +1,28 @@
+// Modules
+const fs = require('fs');
+const path = require("path");
+const data = require('./backend/fakeDatabase/db.json');
+const uuid = require("uuid");
 const express = require('express');
 
 const app = express();
 
-app.get('/api/notes', (req, res) => {
-  const notes = [
-    {
-      "title": "notes",
-      "body": "note...",
-      "id": 1
-    },
-    {
-      "title": "notes",
-      "body": "note...",
-      "id": 2
-    },
-    {
-      "title": "notes",
-      "body": "note...",
-      "id": 3
-    },
-  ];
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
 
-  res.json(notes)
+app.get("/api/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
+  res.json(data)
+});
 
+app.post("/api/notes", (req, res) => {
+  const notes = JSON.parse(fs.readFileSync("/backend/fakeDatabase/db.json"));
+  const newNotes = req.body;
+  newNotes.id = uuid.v4();
+  notes.push(newNotes);
+  fs.writeFileSync("/backend/fakeDatabase/db.json", JSON.stringify(notes))
+  res.json(notes);
 });
 
 const port = 3001;

@@ -2,7 +2,7 @@
   "name": "notetaker",
   "version": "1.0.0",
   "description": "React Express Project",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "client-install": "cd client && npm install",
     "start": "node server.js",
@@ -23,6 +23,7 @@
   "dependencies": {
     "concurrently": "^6.0.2",
     "express": "^4.17.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2"
   }
 }

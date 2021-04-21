@@ -2,7 +2,8 @@ import { useState } from "react";
 
 const Home = () => {
 
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState(null);
+    
 
     const getNotes = async (url) => {
         const res = await fetch(url);
@@ -19,12 +20,7 @@ const Home = () => {
     return (
         <div>
             Hi
-            {
-                notes.map(note => <p key={note.id}>
-                        {note.title}
-                    </p>
-                )
-            }
+            { notes.map(note => <p key={note.id}>{note.title}</p>) }
         </div>
     )
 
