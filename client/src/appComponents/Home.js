@@ -1,26 +1,26 @@
 import { useState } from "react";
+import useFetch from "../customHooks/useFetch";
+import Notes from "./noteCompoenets/Notes";
 
 const Home = () => {
 
-    const [notes, setNotes] = useState(null);
-    
+    // custom hook to fetch from our api
+    const { notes, pending, error, setNotes } = useFetch('/api/notes');
 
-    const getNotes = async (url) => {
-        const res = await fetch(url);
-        const data = await res.json();
-        return data
+    const deleteNote = (id) => {
+        // return a new state of the Note
+        const newNotes = notes.filter(note => note.id == id)
+        // sets the state as a filtered array
+        setNotes(newNotes)
     }
-
-    getNotes('/api/notes').then(res => {
-        setNotes(res)
-    })  
-
-
 
     return (
         <div>
             Hi
-            { notes.map(note => <p key={note.id}>{note.title}</p>) }
+            { error && <div>{error}</div> }
+            { pending && <div>Loading...</div> }
+            { /* Displays Notes from API */ }
+            { notes && <Notes notes={notes} title="All Notes" deleteNote={deleteNote} />}
         </div>
     )
 

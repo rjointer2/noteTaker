@@ -1,0 +1,4 @@
+{ error && <div>{error}</div> }
+            { pending && <div>Loading...</div> }
+            { /* Displays Notes from API */ }
+            { notes && <Notes notes={notes} title="All Notes" deleteNote={deleteNote} />}
