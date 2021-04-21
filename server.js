@@ -11,10 +11,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-app.get("/api/notes", (req, res) => {
+// all data
+
+app.get("/api/", (req, res) => {
   res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
   res.json(data)
 });
+
+// just notes 
+
+app.get("/api/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
+  res.json(data.notes)
+})
+
+// just users
+
+app.get("/api/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
+  res.json(data.users)
+})
 
 app.post("/api/notes", (req, res) => {
   const notes = JSON.parse(fs.readFileSync("/backend/fakeDatabase/db.json"));

@@ -14,6 +14,8 @@ const Home = () => {
         setNotes(newNotes)
     }
 
+    fetch('/api/notes', { method: 'POST', body: 'some test data'}).then(res => res.json())
+
     return (
         <div>
             Hi

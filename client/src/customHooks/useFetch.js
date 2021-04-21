@@ -26,8 +26,8 @@ const useFetch = (url) => {
 
         fetchRequest(url, { signal: abortController.singal }).then( data => {
             // set our note's state as the resolve promise 
-            console.log(data.notes)
-            setNotes(data.notes);
+            console.log(data)
+            setNotes(data);
             // This res isn't pending 
             setPending(false)
             // keep our error state at null 
