@@ -1,7 +1,7 @@
 // Modules
 const fs = require('fs');
 const path = require("path");
-const data = require('./backend/fakeDatabase/db.json');
+const data = require('./fakeDatabase/db.json');
 const uuid = require("uuid");
 const express = require('express');
 

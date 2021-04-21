@@ -25,18 +25,12 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 # Usage
 
+--> FOR FIRST DOWNLOAD <--
+    npm i 
+
 This can be used to create notes for each day of the week
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-### JSON SERVER
-
-node .\backend\server ** In second terminal
-API - http://localhost:3001/api/notes
-
+ 
+npm run dev
 
 ## License & Copyright
 
