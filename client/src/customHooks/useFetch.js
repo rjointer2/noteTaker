@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 const useFetch = (url) => {
 
     // State Values
-    const [notes, setNotes] = useState(null);
+    const [data, setNotes] = useState(null);
     const [pending, setPending] = useState(true); 
     const [error, setError] = useState(null);
 
@@ -13,7 +13,6 @@ const useFetch = (url) => {
         try {
             const res = await fetch(url);
             const data = await res.json();
-            console.log(data)
             return data;
         } catch(e) {
             throw Error('could not obtain notes')
@@ -26,7 +25,6 @@ const useFetch = (url) => {
 
         fetchRequest(url, { signal: abortController.singal }).then( data => {
             // set our note's state as the resolve promise 
-            console.log(data)
             setNotes(data);
             // This res isn't pending 
             setPending(false)
@@ -41,22 +39,13 @@ const useFetch = (url) => {
             }
         })
 
-        return () => {
-            console.log(
-                'clean up has occur to help perform React State updates on unmounted component'
-            )
-            abortController.abort();
-            console.log(
-                'fetch interupted, state update if error'
-            )
-        }
-
+        return () => abortController.abort();
     },[
         /* Our Dependencies */
         url
     ]);
 
-    return { notes, pending, error, setNotes, setPending, setError }
+    return { data, pending, error, setNotes, setPending, setError }
 }
 
 export default useFetch

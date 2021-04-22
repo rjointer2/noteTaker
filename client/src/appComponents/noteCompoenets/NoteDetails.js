@@ -1,26 +1,30 @@
-import { useParams } from "react-router";
-import useFetch from "../../customHooks/useFetch";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const NoteDetails = () => {
 
-    // Route Params
     const { id } = useParams()
-    const { notes, pending, error } = useFetch('api/notes/' + id)
+    const [ noteData, setNoteData ] = useState(null)
 
+    const getData = async () => {
+        const res = await fetch('/api/notes')
+        const data = await res.json()
+        return data
+    }
+
+    getData().then( data => {
+        for(let i = 0; i < data.length; i++ ) {
+            if( id === data[i].id ) setNoteData(data[i].id)
+        }
+    })
+     
     return (
-        <div className="noteDetails">
-            { pending && <div>Loading...</div> }
-            { error && <div>{ error }</div> }
+        <div>
             {
-                notes && (
-                    <article>
-                        <h2>
-                            { notes.title }
-                        </h2>
-                        <div>
-                            { notes.body }
-                        </div>
-                    </article>
+                noteData && (
+                    <h2>
+                        { noteData }
+                    </h2>
                 )
             }
         </div>

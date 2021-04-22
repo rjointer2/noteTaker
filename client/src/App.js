@@ -1,11 +1,7 @@
 import { 
   Typography, 
-  AppBar, 
-  Card,
-  CardActionArea, 
-  CardContent, 
+  AppBar,
   CssBaseline, 
-  Grid, 
   Toolbar, 
   Container,
 } from '@material-ui/core';
@@ -25,6 +21,8 @@ import './App.css';
 import Home from './appComponents/Home';
 import Navbar from './appComponents/Navbar';
 import NoteDetails from './appComponents/noteCompoenets/NoteDetails';
+import CreateNote from './appComponents/CreateNote'
+
 
 function App() {
   return (
@@ -63,9 +61,7 @@ function App() {
             <CreateNote />
             </Route>
             {/* Note Route Parameters */}
-            <Route path="/notes/:id">
-            <NoteDetails />
-            </Route>
+            <Route path="/api/notes/:id" component={NoteDetails} />
           </Switch>
         </div>
       </div>

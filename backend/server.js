@@ -27,18 +27,19 @@ app.get("/api/notes", (req, res) => {
 
 // just users
 
-app.get("/api/notes", (req, res) => {
+app.get("/api/users", (req, res) => {
   res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
   res.json(data.users)
 })
 
 app.post("/api/notes", (req, res) => {
-  const notes = JSON.parse(fs.readFileSync("/backend/fakeDatabase/db.json"));
+  const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
   const newNotes = req.body;
   newNotes.id = uuid.v4();
-  notes.push(newNotes);
-  fs.writeFileSync("/backend/fakeDatabase/db.json", JSON.stringify(notes))
-  res.json(notes);
+  data.notes.push(newNotes);
+  fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(data))
+  res.json(data);
+  console.log(data)
 });
 
 const port = 3001;
