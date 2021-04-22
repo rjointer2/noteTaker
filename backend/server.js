@@ -22,25 +22,26 @@ app.get("/api/", (req, res) => {
 
 app.get("/api/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
-  res.json(data.notes)
-})
-
-// just users
-
-app.get("/api/users", (req, res) => {
-  res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
-  res.json(data.users)
+  res.json(data)
 })
 
 app.post("/api/notes", (req, res) => {
   const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
   const newNotes = req.body;
   newNotes.id = uuid.v4();
-  data.notes.push(newNotes);
+  data.push(newNotes);
   fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(data))
   res.json(data);
   console.log(data)
 });
+
+
+app.delete("/api/notes/:id", (req, res) => {
+  const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
+  const removeNote = data.filter((targeted) => targeted.id !== req.params.id);
+  fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(removeNote))
+  res.json(removeNote);
+})
 
 const port = 3001;
 

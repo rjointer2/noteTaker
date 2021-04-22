@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const NoteDetails = () => {
 
     const { id } = useParams()
     const [ noteData, setNoteData ] = useState(null)
+    const history = useHistory();
 
     const getData = async () => {
         const res = await fetch('/api/notes')
@@ -14,17 +15,39 @@ const NoteDetails = () => {
 
     getData().then( data => {
         for(let i = 0; i < data.length; i++ ) {
-            if( id === data[i].id ) setNoteData(data[i].id)
+            if( id === data[i].id ) setNoteData(data[i])
         }
     })
+
+
+    const handleClick = () => {
+        fetch('/api/notes/' + noteData.id, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(noteData)
+        }).then(() => {
+            history.push('/')
+        })
+    }
      
     return (
         <div>
             {
                 noteData && (
-                    <h2>
-                        { noteData }
-                    </h2>
+                    <div>
+                        <h2>
+                            { noteData.title }
+                        </h2>
+                        <p>
+                            { noteData.body }
+                        </p>
+                        <button onClick={handleClick}> 
+                            Delete Note
+                        </button>
+                    </div>
                 )
             }
         </div>
