@@ -19,7 +19,6 @@ const Home = () => {
 
     return (
         <div>
-            Hi
             { error && <div>{error}</div> }
             { pending && <div>Loading...</div> }
             { /* Displays Notes from API */ }

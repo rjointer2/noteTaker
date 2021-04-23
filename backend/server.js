@@ -1,24 +1,31 @@
 // Modules
+
 const fs = require('fs');
 const path = require("path");
 const data = require('./fakeDatabase/db.json');
 const uuid = require("uuid");
 const express = require('express');
 
+// Express Application
+
 const app = express();
+
+// Serving Static Files and encode request objects in json formats
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// all data
+// all data, to view api in clean way in the browser
+// This application uses /api/notes to serve the route
 
 app.get("/api/", (req, res) => {
   res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
   res.json(data)
 });
 
-// just notes 
+// This isn't using a database, this is using a fs module as a way
+// fake DB
 
 app.get("/api/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
@@ -28,11 +35,11 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/notes", (req, res) => {
   const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
   const newNotes = req.body;
+  // create unique ids for the req objects
   newNotes.id = uuid.v4();
   data.push(newNotes);
   fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(data))
   res.json(data);
-  console.log(data)
 });
 
 app.put("/api/notes/:id", (req, res) => {
@@ -56,6 +63,8 @@ app.delete("/api/notes/:id", (req, res) => {
   res.json(removeNote);
 })
 
+// When Deploying to Heroku, use process.env.PORT
+
 const port = 3001;
 
-app.listen(port, () => console.log(`Server started on ${port}`))
+app.listen(port, () => console.log('Launch Application'))

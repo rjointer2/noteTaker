@@ -1,8 +1,15 @@
 
 import { useState } from 'react';
 
+// Rich Text Editor from CDEditor
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+// Material UI Components
+
+import Typography  from '@material-ui/core/Typography';
+import Button  from '@material-ui/core/Button';
+import CreateIcon from '@material-ui/icons/Create';
 
 
 const CreateNote = () => {
@@ -33,7 +40,7 @@ const CreateNote = () => {
     }
 
     return (
-        <div>
+        <div className="center">
             <form onSubmit={submitForm}>
                 <label>
                     Note Title
@@ -55,6 +62,7 @@ const CreateNote = () => {
                         setText(data)
                         console.log(data)
                     }}
+                    // Placeholder
                     data="Write Here..."
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
@@ -63,10 +71,11 @@ const CreateNote = () => {
                     
                 />
 
-
-                <button>
-                    Publish
-                </button>
+                <Button
+                    endIcon={<CreateIcon />}
+                >
+                    Publish Notes
+                </Button>
             </form>
             
         </div>

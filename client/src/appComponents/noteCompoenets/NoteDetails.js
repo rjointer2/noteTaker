@@ -1,6 +1,10 @@
 
+// Rich Editor from CDEDITOR for React
+
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+// React hooks imported from react library react
 
 import { useHistory, useParams } from "react-router";
 import useFetch from "../../customHooks/useFetch";
@@ -10,30 +14,45 @@ import { useState } from 'react'
 const NoteDetails = () => {
 
     const { id } = useParams()
+    // Custom Hook to fetch data
     const { data: note, pending, error } = useFetch('/api/notes/');
 
+
+    // to redirect to the home page
     const history = useHistory();
 
-    // state of the title
-    const [ title, setTitle ] = useState('')
-    const [text, setText] = useState('')
+    // state of the title and body for the CDEditor
+    // Will implement the setTitle for a future input form
+    const [ title, setTitle ] = useState('');
+    const [text, setText] = useState('');
 
+
+    // This will hold the reference of our defined the IIFE compares
+    // the correct id
+
+    // This is a state variable to aviod a infinite loop
     let noteData = undefined;
 
     (function() {
+        // When immediately invoked if the state if from our useFetch is null 
+        // don't run the rest if code below
         if(note === null) return false
 
+        // After first load bubble through the response object array
+        // compare the id with the param's id and set the variable 
+        // noteData as the object compared
         for(let i = 0; i < note.length; i++) {
             if(note[i].id === id) {
                 noteData = note[i]
                 
             }
+            // We don't techincally need a error because our useFetch handle
+            // if the state reminds null
             console.log('oop')
         }
     })()
 
-    console.log('hi')
-
+    // This state vaiable will be sent as a reference form this object
     const reqBody = {
         title: title,
         body: text
@@ -44,17 +63,16 @@ const NoteDetails = () => {
     const deleteRequest = (e) => {
 
         e.preventDefault();
-
-       fetch('/api/notes/' + noteData.id, {
-           method: 'DELETE',
-           mode: 'cors',
-           headers: {
-               'Content-type': 'application/json'
-           },
-           body: JSON.stringify(reqBody)
-       }).then(() => {
-            history.push('/')
-       })
+        fetch('/api/notes/' + noteData.id, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(reqBody)
+        }).then(() => {
+                history.push('/')
+        })
 
     }
 
