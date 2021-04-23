@@ -35,6 +35,19 @@ app.post("/api/notes", (req, res) => {
   console.log(data)
 });
 
+app.put("/api/notes/:id", (req, res) => {
+  const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
+  for( var i in data ) {
+    if( data[i].id === req.params.id ) {
+      console.log(req.body.body);
+      console.log(data[i].body);
+      data[i].body = req.body.body
+    }
+  }
+  fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(data))
+  res.json(data);
+})
+
 
 app.delete("/api/notes/:id", (req, res) => {
   const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));

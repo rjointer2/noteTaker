@@ -34,7 +34,12 @@ const NoteDetails = () => {
 
     console.log('hi')
 
-    // delete request
+    const reqBody = {
+        title: title,
+        body: text
+    }
+
+    // DELETE request
 
     const deleteRequest = (e) => {
 
@@ -46,10 +51,28 @@ const NoteDetails = () => {
            headers: {
                'Content-type': 'application/json'
            },
-           body: JSON.stringify(noteData)
+           body: JSON.stringify(reqBody)
        }).then(() => {
             history.push('/')
        })
+
+    }
+
+    // PUT Request 
+
+    const putRequest = (e) => {
+
+        e.preventDefault();
+        fetch('/api/notes/' + noteData.id, {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(reqBody)
+        }).then(() => {
+            history.push('/')
+        })
 
     }
  
@@ -77,6 +100,9 @@ const NoteDetails = () => {
                                 console.log( 'Editor is ready to use!', editor );
                             } }
                         />
+                        <button onClick={putRequest}>
+                            Update Note
+                        </button>
                         <button onClick={deleteRequest}>
                             Delete Note
                         </button>
