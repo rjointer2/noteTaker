@@ -22,24 +22,39 @@ app.get("/api/", (req, res) => {
 
 app.get("/api/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
-  res.json(data.notes)
-})
-
-// just users
-
-app.get("/api/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
-  res.json(data.users)
+  res.json(data)
 })
 
 app.post("/api/notes", (req, res) => {
-  const notes = JSON.parse(fs.readFileSync("/backend/fakeDatabase/db.json"));
+  const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
   const newNotes = req.body;
   newNotes.id = uuid.v4();
-  notes.push(newNotes);
-  fs.writeFileSync("/backend/fakeDatabase/db.json", JSON.stringify(notes))
-  res.json(notes);
+  data.push(newNotes);
+  fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(data))
+  res.json(data);
+  console.log(data)
 });
+
+app.put("/api/notes/:id", (req, res) => {
+  const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
+  for( var i in data ) {
+    if( data[i].id === req.params.id ) {
+      console.log(req.body.body);
+      console.log(data[i].body);
+      data[i].body = req.body.body
+    }
+  }
+  fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(data))
+  res.json(data);
+})
+
+
+app.delete("/api/notes/:id", (req, res) => {
+  const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
+  const removeNote = data.filter((targeted) => targeted.id !== req.params.id);
+  fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(removeNote))
+  res.json(removeNote);
+})
 
 const port = 3001;
 

@@ -41,10 +41,14 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 # Usage
 
-** NOT DEPLOYED YET
+This web application can be used to take notes. For best experience please the instruction below
 
---> FOR FIRST DOWNLOAD <--
-    npm i 
+# Instructions
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 TO RUN BUILD
 

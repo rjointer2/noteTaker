@@ -1,14 +1,17 @@
 
-const Notes = ({notes, title, deleteNote}) => {
+import {Link} from 'react-router-dom'
+
+const Notes = ({data, title, deleteNote}) => {
     
     return (
         <div>
             <h2>{ title }</h2>
-            {notes.map((note) => (
+            {data.map((note) => (
                 <div key={note.id}>
-                   {/*  <Link to={`/notes/${note.id}`}>
+                    {console.log(note.id)}
+                    <Link to={`/api/notes/${note.id}`}>
                         <h3>{note.title}</h3>
-                    </Link> */}
+                    </Link>
                     <p>Here is your note!</p>
                     <button onClick={() => deleteNote(note.id)}>
                         Delete Note
