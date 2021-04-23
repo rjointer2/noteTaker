@@ -62,4 +62,4 @@ If you would like contribute please, download and fire away!
 
 (c) Roosevelt Jointer, UC Berkeley's Web Extension Program
 
-Licensed under the [MIT License](LICENS
+Licensed under the [MIT License](LICENSE)
