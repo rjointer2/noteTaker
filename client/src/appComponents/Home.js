@@ -6,6 +6,8 @@ const Home = () => {
 
     // custom hook to fetch from our api
     const { data, pending, error, setNotes } = useFetch('/api/notes');
+
+    console.log(data)
     
     const deleteNote = (id) => {
         // return a new state of the Note

@@ -1,71 +1,40 @@
 
-import { useState } from 'react'
+import { useState } from 'react';
 
-// Editor Block
-import editor from '../ulit/editor'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 const CreateNote = () => {
 
     // state of the title
     const [ title, setTitle ] = useState('')
-    const [ body, setBody ] = useState('')
-    
+    const [text, setText] = useState('')
 
-    // editorjs with React will not load on first mount
-    // if the promise from editorjs is rejected, then 
-    // reload the component again to get the editor module
+    // function to submit to post a request to server and save the data
 
-    editor.isReady.catch(error => {
-        window.location.reload()
-        console.log('test')
-    })
-
-    const saveNote = () => {
-        editor.save().then((outputData) => {
-        console.log(JSON.stringify(outputData.blocks))
-        setBody(outputData)
-        }).catch((error) => {
-        console.log('Saving failed: ', error)
-        });
-    }
-
-    const data = {
-        title: 'test',
-        body: 'test body'
-    }
-
-    const settings = {
-        method: 'POST', 
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }
-
-    fetch('/api/notes', settings)
-
-    /* const submitForm = async (e) => {
+    const submitForm = (e) => {
         e.preventDefault();
-        const note = {
-            title: form.title.value
+        const data = {
+            title: title,
+            body: text
         }
-
-
-        await fetch('http://localhost:3001/api/notes', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(note)
-        }).then(() => {
-            console.log('check data')
-            console.log(note)
-        })
-    } */
+        // settings for the post request are defined 
+        const settings = {
+            method: 'POST', 
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    
+        fetch('/api/notes', settings)
+    }
 
     return (
         <div>
-            <form /* onSubmit={submitForm} */>
+            <form onSubmit={submitForm}>
                 <label>
                     Note Title
                 </label>
@@ -78,18 +47,28 @@ const CreateNote = () => {
                 <label>
                     Body
                 </label>
-                <input className='hidden'
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
+                <CKEditor
+                    editor={ ClassicEditor }
+                    data={text}
+                    onChange={(event, editor) => {
+                        const data = editor.getData()
+                        setText(data)
+                        console.log(data)
+                    }}
+                    data="Write Here..."
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    
                 />
-                <div id="editorjs"></div>
+
+
                 <button>
                     Publish
                 </button>
             </form>
-            <button onClick={saveNote}>
-                Save Note
-            </button>
+            
         </div>
     )
 }

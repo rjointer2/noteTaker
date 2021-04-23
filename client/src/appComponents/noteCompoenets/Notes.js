@@ -8,7 +8,8 @@ const Notes = ({data, title, deleteNote}) => {
             <h2>{ title }</h2>
             {data.map((note) => (
                 <div key={note.id}>
-                    <Link to={`api/notes/${note.id}`}>
+                    {console.log(note.id)}
+                    <Link to={`/api/notes/${note.id}`}>
                         <h3>{note.title}</h3>
                     </Link>
                     <p>Here is your note!</p>
