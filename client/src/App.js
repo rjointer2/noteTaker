@@ -4,6 +4,7 @@ import {
   CssBaseline, 
   Toolbar, 
   Container,
+  Grid,
 } from '@material-ui/core';
 
 import  {
@@ -32,10 +33,16 @@ function App() {
         <AppBar position='relative'>
           <Toolbar>
             <Assignment />
-            <Typography variant="h5">
-              Note Taker
-            </Typography>
-            <Navbar />
+            <Grid 
+              justify="space-between"
+              container
+              spacing={24}
+            >
+              <Typography variant="h5">
+                Note Taker
+              </Typography>
+              <Navbar />
+            </Grid>
           </Toolbar>
         </AppBar>
         <main>
@@ -44,7 +51,7 @@ function App() {
               <Typography variant='h2' align="center" color="textPrimary" gutterBottom>
                 Notes
               </Typography>
-              <Typography variant='h6' align="center" color="textSecondary" paragraph>
+              <Typography  align="center" color="textSecondary" paragraph>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
               </Typography>
             </Container>

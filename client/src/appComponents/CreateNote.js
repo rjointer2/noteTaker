@@ -16,6 +16,7 @@ const CreateNote = () => {
 
     // state of the title
     const [ title, setTitle ] = useState('')
+    const [ summary, setSummary ] = useState('')
     const [text, setText] = useState('')
 
     // function to submit to post a request to server and save the data
@@ -24,6 +25,7 @@ const CreateNote = () => {
         e.preventDefault();
         const data = {
             title: title,
+            summary: summary,
             body: text
         }
         // settings for the post request are defined 
@@ -52,6 +54,15 @@ const CreateNote = () => {
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <label>
+                    Summary
+                </label>
+                <input 
+                    type="text"
+                    name="title"
+                    value={summary}
+                    onChange={(e) => setSummary(e.target.value)}
+                />
+                <label>
                     Body
                 </label>
                 <CKEditor
@@ -68,7 +79,6 @@ const CreateNote = () => {
                         // You can store the "editor" and use when it is needed.
                         console.log( 'Editor is ready to use!', editor );
                     } }
-                    
                 />
 
                 <Button

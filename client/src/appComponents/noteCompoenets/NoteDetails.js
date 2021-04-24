@@ -104,6 +104,9 @@ const NoteDetails = () => {
                     <h2>
                         { noteData.title }
                     </h2>
+                    <h2>
+                        { noteData.summary }
+                    </h2>
                         <CKEditor
                             editor={ ClassicEditor }
                             data={text}

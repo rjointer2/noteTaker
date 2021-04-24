@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import Typography  from '@material-ui/core/Typography'
 import Button  from '@material-ui/core/Button'
+import { Box, Paper } from '@material-ui/core'
 
 const Notes = ({data, title, deleteNote}) => {
     
@@ -18,24 +19,33 @@ const Notes = ({data, title, deleteNote}) => {
             >
                 { title }
             </Typography>
-            {/* Maps out notes */}
-            {data.map((note) => (
-                <div key={note.id}>
-                    {/* Links to NoteDetails Component */}
-                    <Link to={`/api/notes/${note.id}`}>
-                        <h3>{note.title}</h3>
-                    </Link>
-                    <p>Here is your note!</p>
-                    {/* Hides Notes by filtering them */}
-                    <Button 
-                        onClick={() => deleteNote(note.id)}
-                        type="submit"
-                        color="default"
-                    >
-                        Hide Note
-                    </Button>
-                </div>
-            ))}
+            <Box
+                m={2} pt={3}
+            >
+                <Paper
+                    align="center"
+                    
+                >
+                    {/* Maps out notes */}
+                    {data.map((note) => (
+                        <div key={note.id}>
+                            {/* Links to NoteDetails Component */}
+                            <Link to={`/api/notes/${note.id}`}>
+                                <h3>{note.title}</h3>
+                            </Link>
+                            <p>{ note.summary }</p>
+                            {/* Hides Notes by filtering them */}
+                            <Button 
+                                onClick={() => deleteNote(note.id)}
+                                type="submit"
+                                color="default"
+                            >
+                                Hide Note
+                            </Button>
+                        </div>
+                    ))}
+                </Paper>
+            </Box>
         </div>
     )
 
