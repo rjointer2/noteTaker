@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 // This application uses /api/notes to serve the route
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client'))
+  res.sendFile('../client/public/index.html')
 })
 
 app.get("/api/", (req, res) => {
