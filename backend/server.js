@@ -16,13 +16,21 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // all data, to view api in clean way in the browser
 // This application uses /api/notes to serve the route
 
-app.get('/', (req, res) => {
-  res.sendFile('../client/public/index.html')
+/* 
+
+  app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
+*/
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
 app.get("/api/", (req, res) => {
