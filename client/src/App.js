@@ -36,10 +36,10 @@ function App() {
             <Grid 
               justify="space-between"
               container
-              spacing={24}
+              spacing={1}
             >
               <Typography variant="h5">
-                Note Taker
+                &nbsp;Note Taker
               </Typography>
               <Navbar />
             </Grid>

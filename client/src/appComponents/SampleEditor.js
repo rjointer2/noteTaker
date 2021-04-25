@@ -7,8 +7,25 @@ import { Box } from '@material-ui/core';
 
 const SampleEditor = () => {
 
-    
+    const inspiration = () => {
+        let quotes = [
+            "Write something amazing!",
+            "You will something epic today!",
+            "Chop Chop! Time to get working",
+            "Today is the day you'll...",
+            "Let's put that keyboard to work!",
+            "This is a demo of the Note Application, go to the new note link to make a real one!",
+            "The hardest thing when writing is starting, let's some idea here",
+            "Forget what to write? Well that's a problem...",
+            "Hello, I'm the text editor. What will you write today?",
+            "Cat Videos aren't here but a cool text editor is! ",
+        ];
 
+        const randomNum = Math.floor(Math.random() * quotes.length)
+
+        return quotes[randomNum]
+    }
+    
     return (
         <div>
             <Typography
@@ -28,7 +45,7 @@ const SampleEditor = () => {
                         const data = editor.getData()
                     }}
                     // Placeholder
-                    data="Write Here..."
+                    data={inspiration()}
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
                         console.log( 'Editor is ready to use!', editor );

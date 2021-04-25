@@ -5,15 +5,12 @@ import Notes from "./noteCompoenets/Notes";
 // Material UI Component
 
 import Grid from '@material-ui/core/Grid'
-import { Paper } from "@material-ui/core";
 import SampleEditor from "./SampleEditor";
 
 const Home = () => {
 
     // custom hook to fetch from our api
     const { data, pending, error, setNotes } = useFetch('/api/notes');
-
-    console.log(data)
     
     const deleteNote = (id) => {
         // return a new state of the Note

@@ -9,6 +9,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useHistory, useParams } from "react-router";
 import useFetch from "../../customHooks/useFetch";
 import { useState } from 'react'
+import { Grid } from '@material-ui/core';
 
 
 const NoteDetails = () => {
@@ -100,34 +101,46 @@ const NoteDetails = () => {
             { pending && <div>Loading...</div> }
             { /* Displays Notes from API */ }
             { note && (
-                <div>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <div>
                     <h2>
                         { noteData.title }
                     </h2>
                     <h2>
                         { noteData.summary }
                     </h2>
-                        <CKEditor
-                            editor={ ClassicEditor }
-                            data={text}
-                            onChange={(event, editor) => {
-                                const data = editor.getData()
-                                setText(data)
-                                console.log(data)
-                            }}
-                            data={noteData.body}
-                            onReady={ editor => {
-                                // You can store the "editor" and use when it is needed.
-                                console.log( 'Editor is ready to use!', editor );
-                            } }
-                        />
-                        <button onClick={putRequest}>
-                            Update Note
-                        </button>
-                        <button onClick={deleteRequest}>
-                            Delete Note
-                        </button>
+                        <Grid
+                            alignItems="center"
+                            justify="center"
+                        >
+                            <CKEditor
+                                editor={ ClassicEditor }
+                                data={text}
+                                onChange={(event, editor) => {
+                                    const data = editor.getData()
+                                    setText(data)
+                                    console.log(data)
+                                }}
+                                data={noteData.body}
+                                onReady={ editor => {
+                                    // You can store the "editor" and use when it is needed.
+                                    console.log( 'Editor is ready to use!', editor );
+                                } }
+                            />
+                            <button onClick={putRequest}>
+                                Update Note
+                            </button>
+                            <button onClick={deleteRequest}>
+                                Delete Note
+                            </button>
+                        </Grid>
                 </div>
+                </Grid>
                 
             )}
         </div>

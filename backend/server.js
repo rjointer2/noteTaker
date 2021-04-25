@@ -35,6 +35,7 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/notes", (req, res) => {
   const data = JSON.parse(fs.readFileSync("./backend/fakeDatabase/db.json"));
   const newNotes = req.body;
+  console.log(newNotes)
   // create unique ids for the req objects
   newNotes.id = uuid.v4();
   data.push(newNotes);
