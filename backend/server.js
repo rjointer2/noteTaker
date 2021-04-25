@@ -16,14 +16,11 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+
+app.use(express.static(path.join(__dirname, 'client')));
 
 // all data, to view api in clean way in the browser
 // This application uses /api/notes to serve the route
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/public/index.html'))
-})
 
 app.get("/api/", (req, res) => {
   res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
