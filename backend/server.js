@@ -64,7 +64,7 @@ app.delete("/api/notes/:id", (req, res) => {
   res.json(removeNote);
 })
 
-// When Deploying to Heroku, use process.env.PORT
+// for heroku
 
 const port = process.env.PORT || 3001;
 
