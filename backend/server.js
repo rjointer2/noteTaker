@@ -66,6 +66,6 @@ app.delete("/api/notes/:id", (req, res) => {
 
 // When Deploying to Heroku, use process.env.PORT
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => console.log('Launch Application'))
