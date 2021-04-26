@@ -29,25 +29,11 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 */
 
-if (process.env.NODE_ENV === "production") {
-  // Sends static folder
-  app.use(express.static("../client/build"));
-  app.use((req, res, next) => {
-    if (req.header("x-forwarded-proto") !== "https")
-      res.redirect(`https://${req.header("host")}${req.url}`);
-    else next();
-  });
-  app.get("/*", function (req, res) {
-    res.sendFile(
-      path.join(__dirname, "../cilent/build/index.html"),
-      function (err) {
-        if (err) {
-          res.status(500).send(err);
-        }
-      }
-    );
-  });
-}
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 app.get("/api/", (req, res) => {
   res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
