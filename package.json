@@ -2,13 +2,15 @@
   "name": "notetaker",
   "version": "1.0.0",
   "description": "React Express Project",
-  "main": "server.js",
+  "main": "backend/server.js",
   "scripts": {
-    "client-install": "cd client && npm install",
-    "start": "node server.js",
+    "start": "if-env NODE_ENV=production && npm run start:production || npm run dev",
+    "start:production": "cd backend && npm start",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install": "cd backend && npm install && cd ../client && npm install",
+    "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
@@ -21,11 +23,9 @@
   },
   "homepage": "https://github.com/rjointer2/noteTaker#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "concurrently": "^6.0.2",
-    "express": "^4.17.1",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.7",
-    "uuid": "^8.3.2"
+    "if-env": "^1.0.4"
+  }, 
+  "devDependencies": {
+    "concurrently": "^6.0.2"
   }
 }
