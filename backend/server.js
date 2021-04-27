@@ -5,7 +5,7 @@ const path = require("path");
 const data = require('./fakeDatabase/db.json');
 const uuid = require("uuid");
 const express = require('express');
-
+const port = process.env.PORT || 3001;
 // Express Application
 
 const app = express();
@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 // all data, to view api in clean way in the browser
 // This application uses /api/notes to serve the route
@@ -29,10 +29,11 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 */
 
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+if(process.env.NODE_ENV === 'production')
+  app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  response.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 app.get("/api/", (req, res) => {
@@ -82,6 +83,6 @@ app.delete("/api/notes/:id", (req, res) => {
 
 // for heroku
 
-const port = process.env.PORT || 3001;
+
 
 app.listen(port, () => console.log('Launch Application'))
