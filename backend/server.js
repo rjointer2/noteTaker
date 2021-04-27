@@ -12,22 +12,12 @@ const app = express();
 
 // Serving Static Files and encode request objects in json formats
 
-
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 // all data, to view api in clean way in the browser
 // This application uses /api/notes to serve the route
-
-/* 
-
-  app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
-
-*/
 
 if(process.env.NODE_ENV === 'production')
   app.use(express.static(path.join(__dirname, "../client/build")));
