@@ -12,7 +12,7 @@ const app = express();
 
 // Serving Static Files and encode request objects in json formats
 
-//   WE HAVE NO PATH FOR THE INDEX.HTML PAGE, MAKE PATH RIGHT AWAY
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 if(process.env.NODE_ENV === 'production')
   app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get("*", function (request, response) {
+app.get("/", function (request, response) {
   response.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
