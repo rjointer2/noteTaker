@@ -27,7 +27,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/api/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
+  res.sendFile(path.join(__dirname, "./backend/fakeDatabase/db.json"))
   res.json(data)
 });
 
@@ -35,7 +35,7 @@ app.get("/api/", (req, res) => {
 // fake DB
 
 app.get("/api/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "/backend/fakeDatabase/db.json"))
+  res.sendFile(path.join(__dirname, "./backend/fakeDatabase/db.json"))
   res.json(data)
 })
 
@@ -70,9 +70,5 @@ app.delete("/api/notes/:id", (req, res) => {
   fs.writeFileSync("./backend/fakeDatabase/db.json", JSON.stringify(removeNote))
   res.json(removeNote);
 })
-
-// for heroku
-
-
 
 app.listen(port, () => console.log('Launch Application'))
