@@ -1,5 +1,5 @@
 
-import useFetch from "../customHooks/useFetch";
+import useFetch from "./useFetch";
 import Notes from "./noteCompoenets/Notes";
 
 // Material UI Component

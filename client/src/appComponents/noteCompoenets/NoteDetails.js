@@ -7,7 +7,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // React hooks imported from react library react
 
 import { useHistory, useParams } from "react-router";
-import useFetch from "../../customHooks/useFetch";
+import useFetch from "../useFetch";
 import { useState } from 'react'
 import { Grid } from '@material-ui/core';
 

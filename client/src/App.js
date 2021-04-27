@@ -49,10 +49,10 @@ function App() {
           <div>
             <Container maxWidth="sm">
               <Typography variant='h2' align="center" color="textPrimary" gutterBottom>
-                Notes
+                Welcome
               </Typography>
               <Typography  align="center" color="textSecondary" paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+                Welcome to the note taker web application, where you can write notes with a rich text editor. You can go to the "new note" link to create a new document, save, update and delete as you like! Hope you enjoy and please feel free to use this as reference to any of your projects!
               </Typography>
             </Container>
           </div>
